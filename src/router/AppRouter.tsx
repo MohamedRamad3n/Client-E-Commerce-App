@@ -8,9 +8,7 @@ import LoginPage from "../Pages/LoginPage";
 import AppLayout from "../layout/AppLayout";
 import CookieServices from "../services/CookieServices";
 import SidebarWithHeader from "../layout/dashboard/DashBoardLayout";
-import DashBoard from "../layout/dashboard";
 import DashBoardProductsTable from "../AppComponents/DashBoardProductsTable";
-import DashBoardProductsTableSkeleton from "../AppComponents/TableSkelton";
 const AppRouter = () => {
   const token = CookieServices.getCookie("jwt");
 

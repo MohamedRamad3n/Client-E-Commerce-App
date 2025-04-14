@@ -63,7 +63,7 @@ const CartDrawer = () => {
                     <CartDrawerItem
                       key={item.id}
                       {...item}
-                      thumbnail={item.thumbnail?.url}
+                      thumbnail={item.thumbnail?.formats?.thumbnail?.url}
                     />
                   ))
                 ) : (

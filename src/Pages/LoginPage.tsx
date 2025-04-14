@@ -37,7 +37,7 @@ export default function LoginPage({
   const { data, loading } = useSelector((state: RootState) => state.userLogin);
 
   if (isAuthenticated) return <Navigate to="/" replace />;
-  
+
   const validateEmail = (email: string) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return regex.test(email);
@@ -73,28 +73,29 @@ export default function LoginPage({
 
 
   return (
-    
+
     <Flex
       minH="100vh"
       align="center"
       justify="center"
       bg={bgColor}
     >
-      <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
+      <Stack gap={8} mx="auto" maxW="lg" py={12} px={6}>
         <Stack align="center">
           <Heading mb={"30px"} fontSize="4xl">
             Sign in to your account
           </Heading>
         </Stack>
-        <Box
-          as="form"
-          rounded="lg"
-          bg={bgColor}
-          boxShadow="lg"
-          p={8}
+        <form
+          style={{
+            borderRadius: '0.5rem',
+            background: bgColor,
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            padding: '2rem'
+          }}
           onSubmit={onSubmitHandler}
         >
-          <Stack spacing={4}>
+          <Stack gap={4}>
             <FormControl isInvalid={!isEmailValid} isRequired>
               <FormLabel>Email address</FormLabel>
               <Input
@@ -161,7 +162,7 @@ export default function LoginPage({
               )}
             </FormControl>
 
-            <Stack spacing={10}>
+            <Stack gap={10}>
               <Stack
                 direction={{ base: "column", sm: "row" }}
                 align="start"
@@ -185,7 +186,7 @@ export default function LoginPage({
               </Button>
             </Stack>
           </Stack>
-        </Box>
+        </form>
       </Stack>
     </Flex>
   );

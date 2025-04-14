@@ -14,9 +14,8 @@ import {
   FlexProps,
   Drawer,
   useDisclosure,
-  Link,
 } from "@chakra-ui/react";
-import { FiMenu, FiBriefcase, FiBell, FiChevronDown } from "react-icons/fi";
+import { FiBriefcase, FiBell, FiChevronDown } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { useColorModeValue } from "../../components/ui/color-mode";
 import { Outlet, Link as RouterLink } from "react-router-dom";
@@ -82,12 +81,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 const NavItem = ({ icon, children, to, ...rest }: NavItemProps) => {
   return (
-    <Link
-      as={RouterLink}
-      to={to}
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
+    <RouterLink to={to} style={{ textDecoration: "none" }}>
       <Flex
         align="center"
         p="4"
@@ -99,6 +93,7 @@ const NavItem = ({ icon, children, to, ...rest }: NavItemProps) => {
           bg: "cyan.400",
           color: "white",
         }}
+        _focus={{ boxShadow: "none" }}
         {...rest}
       >
         {icon && (
@@ -113,7 +108,7 @@ const NavItem = ({ icon, children, to, ...rest }: NavItemProps) => {
         )}
         {children}
       </Flex>
-    </Link>
+    </RouterLink>
   );
 };
 
@@ -136,7 +131,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         onClick={onOpen}
         variant="outline"
         aria-label="open menu"
-        icon={<FiMenu />}
       />
 
       <Text
@@ -148,7 +142,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         Logo
       </Text>
 
-      <HStack spacing={{ base: "4", md: "6" }}>
+      <HStack gap={{ base: "4", md: "6" }}>
         <IconButton aria-label="Search database" variant="ghost">
           <FiBell />
         </IconButton>
@@ -171,7 +165,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 <VStack
                   display={{ base: "none", md: "flex" }}
                   alignItems="flex-start"
-                  spacing="1px"
+                  gap="1px"
                   ml="2"
                 >
                   <Text fontSize="sm">Justina Clark</Text>
@@ -202,7 +196,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 };
 
 const SidebarWithHeader = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
 
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
@@ -212,11 +206,8 @@ const SidebarWithHeader = () => {
         display={{ base: "none", md: "block" }}
       />
       <Drawer.Root
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
+        open={open}
+        placement="start"
         size="full"
       >
         <DrawerContent>

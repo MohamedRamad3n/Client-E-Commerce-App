@@ -42,21 +42,21 @@ const NavLink = (props: Props) => {
   const { children, to } = props;
 
   return (
-    <Link
-      as={RouterLink}
-      to={to}
-      px={4} // Increased padding for better clickable area
-      py={2}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        backgroundColor: useColorModeValue("gray.200", "gray.700"), // Light/dark background color on hover
-        color: useColorModeValue("gray.800", "white"), // Light/dark text color on hover
-      }}
-      transition="all 0.2s ease" // Smooth transition for hover effect
-    >
-      {children}
-    </Link>
+    <RouterLink to={to}>
+      <Link
+        px={4}
+        py={2}
+        rounded={"md"}
+        _hover={{
+          textDecoration: "none",
+          backgroundColor: useColorModeValue("gray.200", "gray.700"),
+          color: useColorModeValue("gray.800", "white"),
+        }}
+        transition="all 0.2s ease"
+      >
+        {children}
+      </Link>
+    </RouterLink>
   );
 };
 
@@ -64,7 +64,7 @@ export default function NavBar() {
   const { cartProducts } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
   const handleOpen = () => {
     console.log("open cart drawer");
 
@@ -84,7 +84,7 @@ export default function NavBar() {
             /*  icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} */
             aria-label={"Open Menu"}
             display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
+            onClick={open ? onClose : onOpen}
           />
           <HStack alignItems={"center"}>
             <Box>Logo</Box>
@@ -170,7 +170,7 @@ export default function NavBar() {
           </Flex>
         </Flex>
 
-        {isOpen ? (
+        {open ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"}>
               {Links.map((link) => (

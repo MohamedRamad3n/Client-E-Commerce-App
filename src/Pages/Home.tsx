@@ -2,9 +2,10 @@ import { Box, Button, Heading, Text, Center, Stack, useBreakpointValue, VStack, 
 import { Link as RouterLink } from 'react-router-dom';
 import { IoRocketSharp } from 'react-icons/io5'; // Rocket icon for a nice touch
 import { useColorModeValue } from '../components/ui/color-mode';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const buttonSize = useBreakpointValue({ base: 'sm', md: 'lg' });
+  const buttonSize = useBreakpointValue<"sm" | "md" | "lg" | "xl" | "2xl" | "2xs" | "xs">({ base: 'sm', md: 'lg' }) || 'md';
 
   // Dynamic color values based on light/dark mode
   const headingColor = useColorModeValue("teal.600", "teal.300");
@@ -24,7 +25,7 @@ const Home = () => {
         maxW="lg"
         boxShadow="xl"
       >
-        <VStack spacing={4} align="center">
+        <Stack gap={4} align="center">
           <Icon as={IoRocketSharp} w={16} h={16} color={headingColor} />
           <Heading size="2xl" color={headingColor} fontWeight="bold">
             Welcome to Our Application!
@@ -32,29 +33,29 @@ const Home = () => {
           <Text fontSize="lg" color={textColor} maxW="400px" mx="auto">
             Experience the future of productivity with our app. Manage your tasks, projects, and more, all in one place.
           </Text>
-          <Stack mt={6} spacing={4} direction={{ base: 'column', md: 'row' }} justify="center">
-            <Button
-              as={RouterLink}
-              to="/products"
-              size={buttonSize}
-              colorScheme={buttonColorScheme}
-              variant="solid"
-              width={{ base: 'full', sm: 'auto' }}
-            >
-              Get Started
-            </Button>
-            <Button
-              as={RouterLink}
-              to="/about"
-              size={buttonSize}
-              colorScheme="gray"
-              variant="outline"
-              width={{ base: 'full', sm: 'auto' }}
-            >
-              Learn More
-            </Button>
+          <Stack mt={6} gap={4} direction={{ base: 'column', md: 'row' }} justify="center">
+            <Link to="/products" style={{ textDecoration: 'none', width: '100%' }}>
+              <Button
+                size={buttonSize}
+                colorScheme={buttonColorScheme}
+                variant="solid"
+                width={{ base: 'full', sm: 'auto' }}
+              >
+                Get Started
+              </Button>
+            </Link>
+            <Link to="/about" style={{ textDecoration: 'none', width: '100%' }}>
+              <Button
+                size={buttonSize}
+                colorScheme="gray"
+                variant="outline"
+                width={{ base: 'full', sm: 'auto' }}
+              >
+                Learn More
+              </Button>
+            </Link>
           </Stack>
-        </VStack>
+        </Stack>
       </Box>
     </Center>
   );

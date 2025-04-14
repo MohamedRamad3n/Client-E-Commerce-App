@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toaster } from "../components/ui/toaster";
 import { useDispatch } from "react-redux";
 import { setIsOnline } from "../app/features/newtworkSlice";
