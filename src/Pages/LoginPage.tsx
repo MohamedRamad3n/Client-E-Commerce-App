@@ -34,7 +34,7 @@ export default function LoginPage({
   const [showPassword, setShowPassword] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const bgColor = useColorModeValue("gray.50", "gray.800");
-  const { data, loading } = useSelector((state: RootState) => state.userLogin);
+  const {  loading } = useSelector((state: RootState) => state.userLogin);
 
   if (isAuthenticated) return <Navigate to="/" replace />;
 

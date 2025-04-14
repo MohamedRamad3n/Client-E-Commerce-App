@@ -1,5 +1,4 @@
-import { Box, Button, Heading, Text, Center, Stack, useBreakpointValue, VStack, Icon } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Button, Heading, Text, Center, Stack, useBreakpointValue, Icon } from '@chakra-ui/react';
 import { IoRocketSharp } from 'react-icons/io5'; // Rocket icon for a nice touch
 import { useColorModeValue } from '../components/ui/color-mode';
 import { Link } from 'react-router-dom';
